@@ -1,4 +1,6 @@
-const reducer = (state = {}) => state;
-const reducers = { reducer };
+import channelsReducer, { ChannelsState } from './channels';
 
-export default reducers;
+export {
+  channelsReducer,
+  ChannelsState
+};

@@ -4,15 +4,16 @@ import {
 import { connectRouter, routerMiddleware, RouterState } from 'connected-react-router';
 import { History } from 'history';
 import logger from 'redux-logger';
-import reducers from '../reducers';
+import { channelsReducer, ChannelsState } from '../reducers';
 
 export type RootState = {
-  router: RouterState,
-};
+  channels: ChannelsState,
+  router: RouterState
+}
 
 export function createStore(history :History) {
   const rootReducer = combineReducers<RootState>({
-    ...reducers,
+    channels: channelsReducer,
     router: connectRouter(history),
   });
 
