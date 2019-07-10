@@ -1,0 +1,92 @@
+import * as React from 'react';
+import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
+import AddIcon from '@material-ui/icons/Add';
+import HOMEIcon from '@material-ui/icons/Home';
+import { ThemeProvider } from '@material-ui/styles';
+import {
+  Drawer, CssBaseline, List, ListItem, ListItemText, ListItemIcon,
+  Divider, ListItemSecondaryAction, IconButton, Collapse, Typography,
+} from '@material-ui/core';
+
+const drawerWidth = 240;
+
+const useStyles = makeStyles((theme: Theme) => createStyles({
+  root: {
+    display: 'flex',
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+  },
+  toolbar: theme.mixins.toolbar,
+  nested: {
+    paddingLeft: theme.spacing(4),
+  },
+  content: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.default,
+    padding: theme.spacing(3),
+  },
+}));
+
+const ChannelList: React.SFC = () => {
+  const channels = ['general', 'random'];
+
+  const classes = useStyles(ThemeProvider);
+  const [open, setOpen] = React.useState(true);
+
+  function handleClick() {
+    setOpen(!open);
+  }
+
+  return (
+    <div className={classes.root}>
+      <CssBaseline />
+      <Drawer
+        className={classes.drawer}
+        variant="permanent"
+        classes={{
+          paper: classes.drawerPaper,
+        }}
+        anchor="left"
+      >
+        <List>
+          <ListItem button>
+            <ListItemIcon>
+              <HOMEIcon />
+            </ListItemIcon>
+            <ListItemText primary="Home" />
+          </ListItem>
+          <Divider />
+          <ListItem button onClick={handleClick}>
+            <ListItemText primary="Channels" />
+            <ListItemSecondaryAction>
+              <IconButton aria-label="Delete">
+                <AddIcon />
+              </IconButton>
+            </ListItemSecondaryAction>
+          </ListItem>
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              {channels.map(channelName => (
+                <ListItem button className={classes.nested} key={channelName}>
+                  <ListItemText primary={`# ${channelName}`} />
+                </ListItem>
+              ))}
+            </List>
+          </Collapse>
+        </List>
+      </Drawer>
+      <main className={classes.content}>
+        <Typography paragraph>
+          HelloWorld
+        </Typography>
+      </main>
+    </div>
+  );
+};
+
+export default ChannelList;
