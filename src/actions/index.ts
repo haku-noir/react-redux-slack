@@ -1,4 +1,4 @@
-import channelsActions from './channels';
+import {channelsActions} from './channels';
 
 export {
   channelsActions,

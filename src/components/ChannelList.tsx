@@ -5,8 +5,10 @@ import HOMEIcon from '@material-ui/icons/Home';
 import { ThemeProvider } from '@material-ui/styles';
 import {
   Drawer, CssBaseline, List, ListItem, ListItemText, ListItemIcon,
-  Divider, ListItemSecondaryAction, IconButton, Collapse, Typography,
+  Divider, ListItemSecondaryAction,IconButton, Collapse, Typography,
 } from '@material-ui/core';
+import { ChannelsState } from 'reducers';
+import { ChannelsDispatch } from 'containers/ChannelList';
 
 const drawerWidth = 240;
 
@@ -25,22 +27,15 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   nested: {
     paddingLeft: theme.spacing(4),
   },
-  content: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
-    padding: theme.spacing(3),
-  },
 }));
 
-const ChannelList: React.SFC = () => {
-  const channels = ['general', 'random'];
+type IProps = ChannelsState & ChannelsDispatch;
+
+const ChannelList: React.SFC<IProps> = (props: IProps) => {
+  const {channels, switchAndRedirectChannel} = props;
 
   const classes = useStyles(ThemeProvider);
   const [open, setOpen] = React.useState(true);
-
-  function handleClick() {
-    setOpen(!open);
-  }
 
   return (
     <div className={classes.root}>
@@ -54,14 +49,14 @@ const ChannelList: React.SFC = () => {
         anchor="left"
       >
         <List>
-          <ListItem button>
+          <ListItem button onClick={() => {switchAndRedirectChannel('/');}}>
             <ListItemIcon>
               <HOMEIcon />
             </ListItemIcon>
             <ListItemText primary="Home" />
           </ListItem>
           <Divider />
-          <ListItem button onClick={handleClick}>
+          <ListItem button onClick={() => {setOpen(!open)}}>
             <ListItemText primary="Channels" />
             <ListItemSecondaryAction>
               <IconButton aria-label="Delete">
@@ -72,7 +67,7 @@ const ChannelList: React.SFC = () => {
           <Collapse in={open} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               {channels.map(channelName => (
-                <ListItem button className={classes.nested} key={channelName}>
+                <ListItem button onClick={() => {switchAndRedirectChannel(`/channels/${channelName}`);}} className={classes.nested} key={channelName}>
                   <ListItemText primary={`# ${channelName}`} />
                 </ListItem>
               ))}
@@ -80,11 +75,6 @@ const ChannelList: React.SFC = () => {
           </Collapse>
         </List>
       </Drawer>
-      <main className={classes.content}>
-        <Typography paragraph>
-          HelloWorld
-        </Typography>
-      </main>
     </div>
   );
 };

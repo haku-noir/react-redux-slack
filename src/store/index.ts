@@ -6,13 +6,13 @@ import { History } from 'history';
 import logger from 'redux-logger';
 import { channelsReducer, ChannelsState } from '../reducers';
 
-export type RootState = {
+export type AppState = {
   channels: ChannelsState,
   router: RouterState
 }
 
 export function createStore(history :History) {
-  const rootReducer = combineReducers<RootState>({
+  const rootReducer = combineReducers<AppState>({
     channels: channelsReducer,
     router: connectRouter(history),
   });

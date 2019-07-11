@@ -1,20 +1,24 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { channelsActions } from '../actions';
+import { push } from 'connected-react-router';
 
 export interface ChannelsState {
   channels: Array<string>;
-  currentChannel: string;
+  currentPath: string;
 }
 
 const initialState: ChannelsState = {
   channels: ['general', 'random'],
-  currentChannel: 'general',
+  currentPath: '/',
 };
 
 const channelsReducer = reducerWithInitialState(initialState)
-  .case(channelsActions.switchChannel, (state :ChannelsState, payload: string) => ({
-    ...state,
-    currentChannel: payload,
-  }));
+  .case(channelsActions.switchPath, (state :ChannelsState, payload: string) => {
+    console.log(push("payload"));
+    return ({
+      ...state,
+      currentPath: payload,
+    });
+  });
 
 export default channelsReducer;
