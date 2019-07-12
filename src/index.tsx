@@ -6,6 +6,7 @@ import { History, createBrowserHistory } from 'history';
 import { Switch, Route } from 'react-router';
 import { createStore } from './store';
 import { ChannelList } from './containers';
+import { MessageFeed } from './components';
 
 const history :History = createBrowserHistory();
 const store = createStore(history);
@@ -19,6 +20,7 @@ ReactDOM.render(
           <Route exact path="/" render={() => <h2>Home</h2>} />
           <Route exact path="/channels/:channelName" render={() => <h2>{store.getState().channels.currentPath.split('/')[2]}</h2>} />
         </Switch>
+        <MessageFeed />
       </main>
     </ConnectedRouter>
   </Provider>,
