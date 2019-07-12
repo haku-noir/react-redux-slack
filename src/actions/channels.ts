@@ -5,5 +5,5 @@ const actionCreator = actionCreatorFactory();
 
 export const channelsActions = {
   switchPath: actionCreator<string>('SWITCH_CHANNEL'),
-  redirectPath: (payload: string) => push(payload)
+  redirectPath: (payload: string) => push(payload),
 };

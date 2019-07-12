@@ -5,10 +5,10 @@ import HOMEIcon from '@material-ui/icons/Home';
 import { ThemeProvider } from '@material-ui/styles';
 import {
   Drawer, CssBaseline, List, ListItem, ListItemText, ListItemIcon,
-  Divider, ListItemSecondaryAction,IconButton, Collapse, Typography,
+  Divider, ListItemSecondaryAction, IconButton, Collapse,
 } from '@material-ui/core';
-import { ChannelsState } from 'reducers';
-import { ChannelsDispatch } from 'containers/ChannelList';
+import { ChannelsState } from '../reducers';
+import { ChannelsDispatch } from '../containers';
 
 const drawerWidth = 240;
 
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 type IProps = ChannelsState & ChannelsDispatch;
 
 const ChannelList: React.SFC<IProps> = (props: IProps) => {
-  const {channels, switchAndRedirectChannel} = props;
+  const { channels, switchAndRedirectChannel } = props;
 
   const classes = useStyles(ThemeProvider);
   const [open, setOpen] = React.useState(true);
@@ -49,14 +49,14 @@ const ChannelList: React.SFC<IProps> = (props: IProps) => {
         anchor="left"
       >
         <List>
-          <ListItem button onClick={() => {switchAndRedirectChannel('/');}}>
+          <ListItem button onClick={() => { switchAndRedirectChannel('/'); }}>
             <ListItemIcon>
               <HOMEIcon />
             </ListItemIcon>
             <ListItemText primary="Home" />
           </ListItem>
           <Divider />
-          <ListItem button onClick={() => {setOpen(!open)}}>
+          <ListItem button onClick={() => { setOpen(!open); }}>
             <ListItemText primary="Channels" />
             <ListItemSecondaryAction>
               <IconButton aria-label="Delete">
@@ -67,7 +67,7 @@ const ChannelList: React.SFC<IProps> = (props: IProps) => {
           <Collapse in={open} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               {channels.map(channelName => (
-                <ListItem button onClick={() => {switchAndRedirectChannel(`/channels/${channelName}`);}} className={classes.nested} key={channelName}>
+                <ListItem button onClick={() => { switchAndRedirectChannel(`/channels/${channelName}`); }} className={classes.nested} key={channelName}>
                   <ListItemText primary={`# ${channelName}`} />
                 </ListItem>
               ))}
