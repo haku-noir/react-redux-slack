@@ -5,8 +5,8 @@ import { ConnectedRouter } from 'connected-react-router';
 import { History, createBrowserHistory } from 'history';
 import { Switch, Route } from 'react-router';
 import { createStore } from './store';
-import { ChannelList } from './containers';
-import { MessageFeed } from './components';
+import { ChannelList, MessageFeed } from './containers';
+
 
 const history :History = createBrowserHistory();
 const store = createStore(history);

@@ -8,6 +8,7 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import { ThemeProvider } from '@material-ui/styles';
+import { ChannelsState } from '../reducers';
 
 const messageWidth = 1000;
 
@@ -21,8 +22,10 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
 }));
 
-const MessageFeed: React.SFC = () => {
-  const messages = ['Hello', 'World'];
+type IProps = ChannelsState;
+
+const MessageFeed: React.SFC<IProps> = (props: IProps) => {
+  const { messages } = props;
 
   const classes = useStyles(ThemeProvider);
 
@@ -33,10 +36,10 @@ const MessageFeed: React.SFC = () => {
           <div>
             <ListItem alignItems="flex-start">
               <ListItemAvatar>
-                <Avatar alt="Avatar" src="" />
+                <Avatar alt="Avatar" src={message.user.avatar || ''} />
               </ListItemAvatar>
               <ListItemText
-                primary="Bot"
+                primary={message.user.name || 'Anonymous'}
                 secondary={(
                   <React.Fragment>
                     <Typography
@@ -45,7 +48,7 @@ const MessageFeed: React.SFC = () => {
                       className={classes.inline}
                       color="textPrimary"
                     >
-                      {message}
+                      {message.body || 'Hello World'}
                     </Typography>
                   </React.Fragment>
                 )}

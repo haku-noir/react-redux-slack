@@ -8,16 +8,16 @@ const instance: AxiosInstance = Axios.create({
 });
 
 export interface User {
-  id?: string;
-  name?: string;
-  avatar?: string;
+  id: string;
+  name: string;
+  avatar: string;
 }
 
 export interface Message {
-  id?: string;
-  body?: string;
-  user?: User;
-  date?: string;
+  id: string;
+  body: string;
+  user: User;
+  date: string;
 }
 
 export const fetchMessages = (
