@@ -3,5 +3,5 @@ import MessageFeed from './MessageFeed';
 
 export {
   ChannelList,
-  MessageFeed
+  MessageFeed,
 };

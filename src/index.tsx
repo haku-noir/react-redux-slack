@@ -17,8 +17,8 @@ ReactDOM.render(
       <ChannelList />
       <main style={{ margin: '1rem 0 1rem 17rem' }}>
         <Switch>
-          <Route exact path="/" render={() => <h2>Home</h2>} />
-          <Route exact path="/channels/:channelName" render={() => <h2>{store.getState().channels.currentPath.split('/')[2]}</h2>} />
+          <Route exact path="/channels/" render={() => <h2>Home</h2>} />
+          <Route exact path="/channels/:channelName" render={() => <h2>{store.getState().channels.currentChannel}</h2>} />
         </Switch>
         <MessageFeed />
       </main>

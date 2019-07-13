@@ -5,18 +5,18 @@ import { AppState } from '../store';
 import { channelsActions } from '../actions';
 import { ChannelList } from '../components';
 
-export interface ChannelsDispatch {
-  switchAndRedirectChannel: (channelName: string) => void
-}
-
 const mapStateToProps = (appState: AppState): ChannelsState => (
   appState.channels
 );
 
+export interface ChannelsDispatch {
+  switchAndRedirectChannel: (channelName: string) => void
+}
+
 const mapDispatchToProps = (dispatch: Dispatch): ChannelsDispatch => ({
   switchAndRedirectChannel: (channelName: string) => {
-    dispatch(channelsActions.redirectPath(channelName));
-    dispatch(channelsActions.switchPath(channelName));
+    dispatch(channelsActions.redirectPath(`/channels/${channelName}`));
+    dispatch(channelsActions.switchChannel(channelName));
   },
 });
 

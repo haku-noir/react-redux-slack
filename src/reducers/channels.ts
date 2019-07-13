@@ -3,18 +3,18 @@ import { channelsActions } from '../actions';
 
 export interface ChannelsState {
   channels: Array<string>;
-  currentPath: string;
+  currentChannel: string;
 }
 
 const initialState: ChannelsState = {
   channels: ['general', 'random'],
-  currentPath: '/',
+  currentChannel: '',
 };
 
 const channelsReducer = reducerWithInitialState(initialState)
-  .case(channelsActions.switchPath, (state :ChannelsState, payload: string) => ({
+  .case(channelsActions.switchChannel, (state :ChannelsState, payload: string) => ({
     ...state,
-    currentPath: payload,
+    currentChannel: payload,
   }));
 
 export default channelsReducer;

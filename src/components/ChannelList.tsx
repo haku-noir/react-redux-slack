@@ -49,7 +49,7 @@ const ChannelList: React.SFC<IProps> = (props: IProps) => {
         anchor="left"
       >
         <List>
-          <ListItem button onClick={() => { switchAndRedirectChannel('/'); }}>
+          <ListItem button onClick={() => { switchAndRedirectChannel(''); }}>
             <ListItemIcon>
               <HOMEIcon />
             </ListItemIcon>
@@ -67,7 +67,12 @@ const ChannelList: React.SFC<IProps> = (props: IProps) => {
           <Collapse in={open} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               {channels.map(channelName => (
-                <ListItem button onClick={() => { switchAndRedirectChannel(`/channels/${channelName}`); }} className={classes.nested} key={channelName}>
+                <ListItem
+                  button
+                  onClick={() => { switchAndRedirectChannel(channelName); }}
+                  className={classes.nested}
+                  key={channelName}
+                >
                   <ListItemText primary={`# ${channelName}`} />
                 </ListItem>
               ))}
