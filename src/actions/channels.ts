@@ -8,5 +8,5 @@ export const channelsActions = {
   switchChannel: actionCreator<string>('SWITCH_CHANNEL'),
   redirectPath: (payload: string) => push(payload),
   updateMessages: actionCreator<Message[]>('UPDATE_MESSAGE'),
-  updateChannels: actionCreator<string[]>('UPDATE_CHANNELS')
+  updateChannels: actionCreator<string[]>('UPDATE_CHANNELS'),
 };

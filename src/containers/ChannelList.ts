@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch: Dispatch): ChannelsDispatch => ({
   },
   updateChannels: (channels: string[]) => {
     dispatch(channelsActions.updateChannels(channels));
-  }
+  },
 });
 
 const connectedChannelList = connect(mapStateToProps, mapDispatchToProps)(ChannelList);

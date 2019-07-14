@@ -8,10 +8,9 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import { ThemeProvider } from '@material-ui/styles';
+import { MessagesDispatch } from '../containers';
 import { ChannelsState } from '../reducers';
-import { useEffect } from 'react';
 import { fetchMessages } from '../clients';
-import { MessagesDispatch } from 'containers';
 
 const messageWidth = 1000;
 
@@ -32,12 +31,11 @@ const MessageFeed: React.SFC<IProps> = (props: IProps) => {
 
   const classes = useStyles(ThemeProvider);
 
-  useEffect(() => {
+  React.useEffect(() => {
     fetchMessages(currentChannel)
-      .then(res => {
+      .then((res) => {
         updateMessages(res.data.messages);
-      })
-      .catch(err => {});
+      });
   });
 
   return (
