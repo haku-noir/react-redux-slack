@@ -27,3 +27,11 @@ export const fetchMessages = (
 ): Promise<AxiosResponse<{messages: Message[]}>> => (
   instance.get(`/channels/${channelName}/messages`, { params, cancelToken })
 );
+
+
+export const fetchChannels = (
+  params = {},
+  cancelToken: CancelToken = null,
+): Promise<AxiosResponse<{channels: string[]}>> => (
+  instance.get('/channels', { params, cancelToken })
+);

@@ -1,7 +1,8 @@
-import { Message, User, fetchMessages } from './messages';
+import { Message, User, fetchMessages, fetchChannels } from './messages';
 
 export {
   User,
   Message,
   fetchMessages,
+  fetchChannels
 };
