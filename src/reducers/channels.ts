@@ -12,7 +12,7 @@ const initialState: ChannelsState = {
   channels: ['general', 'random'],
   currentChannel: '',
   messages: [{
-    id: '',
+    id: '0',
     body: 'Hello',
     user: {
       id: '',
@@ -21,7 +21,7 @@ const initialState: ChannelsState = {
     },
     date: '',
   }, {
-    id: '',
+    id: '1',
     body: 'World',
     user: {
       id: '',
@@ -36,6 +36,10 @@ const channelsReducer = reducerWithInitialState(initialState)
   .case(channelsActions.switchChannel, (state: ChannelsState, payload: string) => ({
     ...state,
     currentChannel: payload,
+  }))
+  .case(channelsActions.updateMessages, (state: ChannelsState, payload: Message[]) => ({
+    ...state,
+    messages: payload
   }));
 
 export default channelsReducer;

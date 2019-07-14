@@ -9,6 +9,9 @@ import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import { ThemeProvider } from '@material-ui/styles';
 import { ChannelsState } from '../reducers';
+import { useEffect } from 'react';
+import { fetchMessages } from '../clients';
+import { MessagesDispatch } from 'containers';
 
 const messageWidth = 1000;
 
@@ -22,18 +25,26 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
 }));
 
-type IProps = ChannelsState;
+type IProps = ChannelsState & MessagesDispatch;
 
 const MessageFeed: React.SFC<IProps> = (props: IProps) => {
-  const { messages } = props;
+  const { currentChannel, messages, updateMessages } = props;
 
   const classes = useStyles(ThemeProvider);
+
+  useEffect(() => {
+    fetchMessages(currentChannel)
+      .then(res => {
+        updateMessages(messages);
+      })
+      .catch(err => {});
+  });
 
   return (
     <div className={classes.root}>
       <List>
         {messages.map(message => (
-          <div>
+          <div key={message.id}>
             <ListItem alignItems="flex-start">
               <ListItemAvatar>
                 <Avatar alt="Avatar" src={message.user.avatar || ''} />
@@ -52,6 +63,7 @@ const MessageFeed: React.SFC<IProps> = (props: IProps) => {
                     </Typography>
                   </React.Fragment>
                 )}
+                key={message.id}
               />
             </ListItem>
             <Divider variant="inset" component="li" />
