@@ -40,6 +40,9 @@ const channelsReducer = reducerWithInitialState(initialState)
   .case(channelsActions.updateMessages, (state: ChannelsState, payload: Message[]) => ({
     ...state,
     messages: payload
+  })).case(channelsActions.updateChannels, (state: ChannelsState, payload: string[]) => ({
+    ...state,
+    channels: payload
   }));
 
 export default channelsReducer;

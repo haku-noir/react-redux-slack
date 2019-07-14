@@ -10,7 +10,8 @@ const mapStateToProps = (appState: AppState): ChannelsState => (
 );
 
 export interface ChannelsDispatch {
-  switchAndRedirectChannel: (channelName: string) => void
+  switchAndRedirectChannel: (channelName: string) => void,
+  updateChannels: (channels: string[]) => void
 }
 
 const mapDispatchToProps = (dispatch: Dispatch): ChannelsDispatch => ({
@@ -18,6 +19,9 @@ const mapDispatchToProps = (dispatch: Dispatch): ChannelsDispatch => ({
     dispatch(channelsActions.redirectPath(`/channels/${channelName}`));
     dispatch(channelsActions.switchChannel(channelName));
   },
+  updateChannels: (channels: string[]) => {
+    dispatch(channelsActions.updateChannels(channels));
+  }
 });
 
 const connectedChannelList = connect(mapStateToProps, mapDispatchToProps)(ChannelList);

@@ -9,6 +9,8 @@ import {
 } from '@material-ui/core';
 import { ChannelsState } from '../reducers';
 import { ChannelsDispatch } from '../containers';
+import { useState, useEffect } from 'react';
+import { fetchChannels } from 'clients/messages';
 
 const drawerWidth = 240;
 
@@ -32,10 +34,18 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 type IProps = ChannelsState & ChannelsDispatch;
 
 const ChannelList: React.SFC<IProps> = (props: IProps) => {
-  const { channels, switchAndRedirectChannel } = props;
+  const { channels, switchAndRedirectChannel, updateChannels } = props;
 
   const classes = useStyles(ThemeProvider);
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = useState(true);
+
+  useEffect(() => {
+    fetchChannels()
+      .then(res => {
+        updateChannels(res.data.channels);
+      })
+      .catch(err => {});
+  });
 
   return (
     <div className={classes.root}>

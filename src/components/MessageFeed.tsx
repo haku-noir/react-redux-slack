@@ -35,7 +35,7 @@ const MessageFeed: React.SFC<IProps> = (props: IProps) => {
   useEffect(() => {
     fetchMessages(currentChannel)
       .then(res => {
-        updateMessages(messages);
+        updateMessages(res.data.messages);
       })
       .catch(err => {});
   });
