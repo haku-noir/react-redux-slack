@@ -38,7 +38,7 @@ const MessageFeed: React.SFC<IProps> = (props: IProps) => {
   return (
     <div className={classes.root}>
       <List>
-        {messages.map((message, index) => (
+        {messages.map(message => (
           <div key={message.id}>
             <ListItem alignItems="flex-start">
               <ListItemAvatar>

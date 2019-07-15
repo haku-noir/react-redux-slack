@@ -10,5 +10,5 @@ export {
   MessageFeed,
   MessageFeedDispatch,
   MessageForm,
-  MessageFormDispatch
+  MessageFormDispatch,
 };

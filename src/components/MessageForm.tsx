@@ -1,13 +1,14 @@
 import * as React from 'react';
-import { makeStyles, Theme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { Button, Grid, TextField } from '@material-ui/core';
 import { messageWidth } from './MessageFeed';
 import { ChannelsState } from '../reducers';
 import { MessageFormDispatch } from '../containers';
-import { Message, User, sendMessage, fetchMessages } from '../clients';
+import {
+  Message, User, sendMessage, fetchMessages,
+} from '../clients';
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     width: messageWidth,
     display: 'flex',
@@ -50,14 +51,14 @@ const createMessage = (id: string, body: string): Message => {
   const user: User = {
     id: 'you',
     name: 'You',
-    avatar: ''
+    avatar: '',
   };
-  const date = new Date;
+  const date = new Date();
   return ({
     id,
     body,
     user,
-    date: `${date.toJSON()}`
+    date: `${date.toJSON()}`,
   });
 };
 
@@ -66,38 +67,39 @@ type IProps = ChannelsState & MessageFormDispatch;
 const MessageForm: React.SFC<IProps> = (props: IProps) => {
   const { currentChannel, messages, updateMessages } = props;
 
-  const classes = useStyles(ThemeProvider);
-  const [message, changeMessage] = React.useState('');
+  const classes = useStyles({});
+  const [message, updateMessage] = React.useState('');
 
   return (
     <Grid container className={classes.root}>
       <Grid item xs={10}>
-      <TextField
-        className={classes.textfield}
-        label="Message"
-        variant="outlined"
-        onChange={(event) => {changeMessage(String(event.target.value));}}
-      />
+        <TextField
+          className={classes.textfield}
+          label="Message"
+          variant="outlined"
+          onChange={(event) => { updateMessage(String(event.target.value)); }}
+        />
       </Grid>
       <Grid item xs={2}>
         <Button
           className={classes.button}
           onClick={() => {
-            console.log("CLICK");
             sendMessage(
               currentChannel,
-              createMessage(String(messages.length + 1), message)
-              ).then((res) => {
-                fetchMessages(currentChannel)
-                  .then((res) => {
-                    updateMessages(res.data.messages);
-                  });
-              });
+              createMessage(String(messages.length + 1), message),
+            ).then(() => {
+              fetchMessages(currentChannel)
+                .then((res) => {
+                  updateMessages(res.data.messages);
+                });
+            });
           }}
-        >Send</Button>
+        >
+        Send
+        </Button>
       </Grid>
     </Grid>
   );
-}
+};
 
 export default MessageForm;

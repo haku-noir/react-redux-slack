@@ -7,5 +7,5 @@ export {
   ChannelList,
   Channel,
   MessageFeed,
-  MessageForm
+  MessageForm,
 };
