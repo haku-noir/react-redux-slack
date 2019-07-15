@@ -9,7 +9,7 @@ import {
 } from '@material-ui/core';
 import { fetchChannels } from '../clients';
 import { ChannelsState } from '../reducers';
-import { ChannelsDispatch } from '../containers';
+import { ChannelListDispatch } from '../containers';
 
 const drawerWidth = 240;
 
@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
 }));
 
-type IProps = ChannelsState & ChannelsDispatch;
+type IProps = ChannelsState & ChannelListDispatch;
 
 const ChannelList: React.SFC<IProps> = (props: IProps) => {
   const { channels, switchAndRedirectChannel, updateChannels } = props;
