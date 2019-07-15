@@ -11,7 +11,7 @@ import { fetchChannels } from '../clients';
 import { ChannelsState } from '../reducers';
 import { ChannelListDispatch } from '../containers';
 
-const drawerWidth = 240;
+export const drawerWidth = 240;
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {

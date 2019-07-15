@@ -1,16 +1,13 @@
 import * as React from 'react';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import Divider from '@material-ui/core/Divider';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
-import Typography from '@material-ui/core/Typography';
 import { ThemeProvider } from '@material-ui/styles';
 import { MessagesDispatch } from '../containers';
 import { ChannelsState } from '../reducers';
 import { fetchMessages } from '../clients';
+import {
+  List, ListItem, ListItemAvatar, Avatar,
+  ListItemText, Typography, Divider
+} from '@material-ui/core';
 
 const messageWidth = 1000;
 

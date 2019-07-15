@@ -14,9 +14,7 @@ ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <ChannelList />
-      <main style={{ margin: '1rem 0 1rem 17rem' }}>
-        <Channel />
-      </main>
+      <Channel />
     </ConnectedRouter>
   </Provider>,
   document.getElementById('root'),
