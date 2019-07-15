@@ -3,23 +3,23 @@ import { connect } from 'react-redux';
 import { ChannelsState } from '../reducers';
 import { AppState } from '../store';
 import { channelsActions } from '../actions';
-import { MessageFeed } from '../components';
+import { MessageForm } from '../components';
 import { Message } from '../clients';
 
 const mapStateToProps = (appState: AppState): ChannelsState => (
   appState.channels
 );
 
-export interface MessageFeedDispatch {
+export interface MessageFormDispatch {
   updateMessages: (messages: Message[]) => void
 }
 
-const mapDispatchToProps = (dispatch: Dispatch): MessageFeedDispatch => ({
+const mapDispatchToProps = (dispatch: Dispatch): MessageFormDispatch => ({
   updateMessages: (messages: Message[]) => {
     dispatch(channelsActions.updateMessages(messages));
   },
 });
 
-const connectedMessageFeed = connect(mapStateToProps, mapDispatchToProps)(MessageFeed);
+const connectedMessageForm = connect(mapStateToProps, mapDispatchToProps)(MessageForm);
 
-export default connectedMessageFeed;
+export default connectedMessageForm;

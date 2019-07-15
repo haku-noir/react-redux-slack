@@ -5,8 +5,8 @@ import {
   List, ListItem, ListItemAvatar, Avatar,
   ListItemText, Typography, Divider,
 } from '@material-ui/core';
-import { MessagesDispatch } from '../containers';
 import { ChannelsState } from '../reducers';
+import { MessageFeedDispatch } from '../containers';
 import { fetchMessages } from '../clients';
 
 export const messageWidth = 1000;
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
 }));
 
-type IProps = ChannelsState & MessagesDispatch;
+type IProps = ChannelsState & MessageFeedDispatch;
 
 const MessageFeed: React.SFC<IProps> = (props: IProps) => {
   const { currentChannel, messages, updateMessages } = props;
@@ -38,7 +38,7 @@ const MessageFeed: React.SFC<IProps> = (props: IProps) => {
   return (
     <div className={classes.root}>
       <List>
-        {messages.map(message => (
+        {messages.map((message, index) => (
           <div key={message.id}>
             <ListItem alignItems="flex-start">
               <ListItemAvatar>

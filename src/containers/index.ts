@@ -1,11 +1,14 @@
 import ChannelList, { ChannelListDispatch } from './ChannelList';
 import Channel from './Channel';
-import MessageFeed, { MessagesDispatch } from './MessageFeed';
+import MessageFeed, { MessageFeedDispatch } from './MessageFeed';
+import MessageForm, { MessageFormDispatch } from './MessageForm';
 
 export {
   ChannelList,
   ChannelListDispatch,
   Channel,
   MessageFeed,
-  MessagesDispatch,
+  MessageFeedDispatch,
+  MessageForm,
+  MessageFormDispatch
 };

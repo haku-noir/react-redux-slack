@@ -3,6 +3,9 @@ import { makeStyles, Theme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import { Button, Grid, TextField } from '@material-ui/core';
 import { messageWidth } from './MessageFeed';
+import { ChannelsState } from '../reducers';
+import { MessageFormDispatch } from '../containers';
+import { Message, User, sendMessage, fetchMessages } from '../clients';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -43,21 +46,55 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const MessageForm = () => {
+const createMessage = (id: string, body: string): Message => {
+  const user: User = {
+    id: 'you',
+    name: 'You',
+    avatar: ''
+  };
+  const date = new Date;
+  return ({
+    id,
+    body,
+    user,
+    date: `${date.toJSON()}`
+  });
+};
+
+type IProps = ChannelsState & MessageFormDispatch;
+
+const MessageForm: React.SFC<IProps> = (props: IProps) => {
+  const { currentChannel, messages, updateMessages } = props;
+
   const classes = useStyles(ThemeProvider);
+  const [message, changeMessage] = React.useState('');
 
   return (
     <Grid container className={classes.root}>
       <Grid item xs={10}>
       <TextField
         className={classes.textfield}
-        label="Custom CSS"
+        label="Message"
         variant="outlined"
-        id="custom-css-outlined-input"
+        onChange={(event) => {changeMessage(String(event.target.value));}}
       />
       </Grid>
       <Grid item xs={2}>
-        <Button className={classes.button}>Send</Button>
+        <Button
+          className={classes.button}
+          onClick={() => {
+            console.log("CLICK");
+            sendMessage(
+              currentChannel,
+              createMessage(String(messages.length + 1), message)
+              ).then((res) => {
+                fetchMessages(currentChannel)
+                  .then((res) => {
+                    updateMessages(res.data.messages);
+                  });
+              });
+          }}
+        >Send</Button>
       </Grid>
     </Grid>
   );

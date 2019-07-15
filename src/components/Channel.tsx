@@ -5,9 +5,8 @@ import {
 import { ThemeProvider } from '@material-ui/styles';
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import { ChannelsState } from '../reducers';
-import { MessageFeed } from '../containers';
+import { MessageFeed, MessageForm } from '../containers';
 import { drawerWidth } from './ChannelList';
-import MessageForm from './MessageForm';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
