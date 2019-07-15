@@ -7,6 +7,7 @@ import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import { ChannelsState } from '../reducers';
 import { MessageFeed } from '../containers';
 import { drawerWidth } from './ChannelList';
+import MessageForm from './MessageForm';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
@@ -42,6 +43,7 @@ const Channel: React.SFC<IProps> = (props: IProps) => {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <MessageFeed />
+        <MessageForm />
       </main>
     </div>
   );

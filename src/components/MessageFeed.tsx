@@ -9,7 +9,7 @@ import { MessagesDispatch } from '../containers';
 import { ChannelsState } from '../reducers';
 import { fetchMessages } from '../clients';
 
-const messageWidth = 1000;
+export const messageWidth = 1000;
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
