@@ -17,7 +17,7 @@
     "url": "git+https://github.com/haku-noir/react-redux-slack.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "haku-noir",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/haku-noir/react-redux-slack/issues"
