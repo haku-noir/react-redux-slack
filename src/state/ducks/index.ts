@@ -1,1 +1,1 @@
-export {default as channelsReducer, IChannelsState} from './channels';
+export { default as channelsReducer, IChannelsState } from './channels';
